@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DET ULTIMATA REKLAMKAOSET!</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #ff00ff;
+            color: #00ff00;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 3rem;
+            text-shadow: 3px 3px #000;
+            animation: blink 0.5s infinite;
+            user-select: none;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .ad-popup {
+            position: fixed;
+            width: 280px;
+            height: 160px;
+            background: white;
+            color: black;
+            border: 4px solid #000;
+            box-shadow: 8px 8px 0px #333;
+            padding: 15px;
+            z-index: 1000;
+            text-align: left;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+        .ad-header {
+            background: linear-gradient(90deg, red, yellow);
+            color: black;
+            padding: 3px;
+            font-weight: bold;
+            margin: -15px -15px 5px -15px;
+            font-size: 0.75rem;
+            text-align: center;
+        }
+        .ad-body {
+            font-size: 0.85rem;
+            font-weight: bold;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .ad-click-target {
+            background-color: #00ff00;
+            color: black;
+            border: 2px solid black;
+            padding: 3px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>!!! DU SLIPPER ALDRIG !!!</h1>
+    <p style="color: white; font-weight: bold;">Klicka på en studsande reklam för att förstöra den! Max 8 på skärmen.</p>
+
+    <script>
+        const ads = [
+            "Grattis! Du är besökare nr 999 999. Klicka här för en gratis mikrovågsugn!",
+            "Ensamma singlar i ditt område vill spela Fortnite med dig NU!",
+            "Gör din pickaxe 400% större med denna enkla juice!",
+            "Tjäna 50 000 kr i timmen på att bara titta på väggfärg som torkar.",
+            "Ladda ner more RAM-minne GRATIS! 100% säkert, inget virus lova.",
+            "Bli av med din tåbiff på 3 sekunder med denna magiska lökmetod.",
+            "Kattmaten som katterna hatar men som är jättebillig! Köp 10 säckar.",
+            "Varning! Din dator är för ren. Klicka här för att installera lite damm.",
+            "Har du testat att stänga av och sätta på livet igen? Köp vår app!",
+            "Köp osynliga strumpor! Syns inte, känns inte (finns de ens?).",
+            "Trött på reklam? Betala 999kr för att få ÄNNU MER reklam!",
+            "Hyr en arg mås som skriker åt dina grannar. Endast 49kr/timme.",
+            "Få gratis V-Bucks genom att ge oss din mammas kreditkortnummer!",
+            "Ät 5 kilo bananer om dagen och bli immun mot otur. Läs studien här.",
+            "Denna bil går på ren viljekraft och gammal disktrasa. Köp nu!",
+            "Bli en certifierad trollkarl online på bara 4 minuter!",
+            "Vill du bli av med pengar snabbt? Klicka här för att skänka till ingenting.",
+            "Köp en låda med luft från Bahamas. Begränsat lager!",
+            "Forskare chockade: Den här mannen kan sova med öppna ögon!",
+            "Din webbläsare är arg på dig. Klicka här för att säga förlåt.",
+            "Köp en robothund som bara skäller när du försöker sova.",
+            "Tappa 10 kilo på 5 sekunder genom att skära av dig ditt hår!",
+            "Få ett diplom i att titta på skärmar. Perfekt för CV:t.",
+            "Lär din guldfisk att cykla på 3 enkla steg. Köp kursen!",
+            "Varning! Du har 473 osynliga virus. Klicka för att göra dem synliga.",
+            "Är du vaken? Det är vi också. Köp en säng nu mitt i natten.",
+            "Sponsrad: Den här stenen är rundare än din sten. Köp nu.",
+            "Tjäna pengar på att sova! (Kräver att du säljer dina drömmar).",
+            "Köp världens minsta sked. Helt oanvändbar men söt.",
+            "Gå med i vår klubb för folk som hatar måndagar. Medlemsavgift: 100kr.",
+            "Har du glömt hur man andas? Klicka här för en instruktionsvideo.",
+            "Hitta din dolda talang! (Spoiler: Det är att klicka på popups).",
+            "Köp en spegel som alltid visar att du är snygg (eller suddig).",
+            "Ladda ner vår app som gör ingenting förutom att ta slut på batteriet.",
+            "Du har vunnit en livstidsförbrukning av begagnade gem!",
+            "Bli kompis med en spöklik röst. Ring vårt premiumnummer nu.",
+            "Köp en tidsmaskin som bara kan resa 1 sekund framåt i sekunden.",
+            "Hjälp! Den här reklamen har fastnat i en loop. Klicka för att loopa mer.",
+            "Är du trött på att sitta ner? Köp vår stå-stol!",
+            "Få reda på vad din hund egentligen tycker om din frisyr.",
+            "Köp skor gjorda av rent lego. Perfekt för att plåga dina fötter.",
+            "Vill du vinna ett osynligt pris? Du har redan vunnit! Klicka här.",
+            "Skräm bort tjuvar med en arg skylt där det står 'Här bor en ninja'.",
+            "Lär dig tala flytande baklänges på under en kvart. Töp nörs!",
+            "Din skärm är smutsig på insidan. Klicka här för att torka av den.",
+            "Köp en automatisk fönstertittare (en kikare på ett stativ).",
+            "Ät pizza varje dag och bli exakt lika tjock som innan. Ny diet!",
+            "Köp en osynlig mantel. (Det är bara en tom galge, men ändå).",
+            "Bli bäst på att förlora i Monopol med vår expertguide.",
+            "Du har nått slutet av listan! Klicka här för att starta om reklamen."
+        ];
+
+        let activeAds = [];
+        const MAX_ADS = 8;
+        const AD_WIDTH = 280;
+        const AD_HEIGHT = 160;
+
+        function spawnAd() {
+            if (activeAds.length >= MAX_ADS) return;
+
+            const adElement = document.createElement('div');
+            adElement.className = 'ad-popup';
+            
+            const randomText = ads[Math.floor(Math.random() * ads.length)];
+            
+            adElement.innerHTML = `
+                <div class="ad-header">💥 ERBJUDANDE 💥</div>
+                <div class="ad-body">${randomText}</div>
+                <div class="ad-click-target">KLICKA FÖR ATT STÄNGA</div>
+            `;
+
+            const spawnPoints = [
+                { x: 0, y: 0 },
+                { x: window.innerWidth - AD_WIDTH, y: 0 },
+                { x: 0, y: window.innerHeight - AD_HEIGHT },
+                { x: window.innerWidth - AD_WIDTH, y: window.innerHeight - AD_HEIGHT }
+            ];
+            const startPoint = spawnPoints[Math.floor(Math.random() * spawnPoints.length)];
+
+            let posX = startPoint.x;
+            let posY = startPoint.y;
+
+            let speedX = (Math.random() * 3 + 2) * (Math.random() < 0.5 ? 1 : -1);
+            let speedY = (Math.random() * 3 + 2) * (Math.random() < 0.5 ? 1 : -1);
+
+            adElement.style.left = posX + 'px';
+            adElement.style.top = posY + 'px';
+
+            adElement.onclick = function() {
+                adElement.remove();
+                activeAds = activeAds.filter(item => item.element !== adElement);
+            };
+
+            document.body.appendChild(adElement);
+
+            activeAds.push({
+                element: adElement,
+                x: posX,
+                y: posY,
+                speedX: speedX,
+                speedY: speedY
+            });
+        }
+
+        function updateAnimation() {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+
+            activeAds.forEach(ad => {
+                ad.x += ad.speedX;
+                ad.y += ad.speedY;
+
+                if (ad.x <= 0) {
+                    ad.x = 0;
+                    ad.speedX = -ad.speedX;
+                } else if (ad.x + AD_WIDTH >= screenWidth) {
+                    ad.x = screenWidth - AD_WIDTH;
+                    ad.speedX = -ad.speedX;
+                }
+
+                if (ad.y <= 0) {
+                    ad.y = 0;
+                    ad.speedY = -ad.speedY;
+                } else if (ad.y + AD_HEIGHT >= screenHeight) {
+                    ad.y = screenHeight - AD_HEIGHT;
+                    ad.speedY = -ad.speedY;
+                }
+
+                ad.element.style.left = ad.x + 'px';
+                ad.element.style.top = ad.y + 'px';
+            });
+
+            requestAnimationFrame(updateAnimation);
+        }
+
+        setInterval(spawnAd, 3000);
+        spawnAd();
+        setTimeout(spawnAd, 500);
+        requestAnimationFrame(updateAnimation);
+    </script>
+</body>
+</html>
